@@ -57,6 +57,24 @@ describe("SlidingWindow", () => {
     const { auction } = await loadFixture(setupFee);
 
     const startBlock = 0;
+    const k = 2;
+    const n = 5;
+    const congestionFee = 7;
+    const congested = await auction.isPeriodCongested(
+      startBlock,
+      k,
+      n,
+      congestionFee
+    );
+
+    expect(congested).to.be.true;
+  }).timeout(5000000);
+
+  // Time to start running through the test cases!
+  it("Identify congestion in the first N blocks.", async () => {
+    const { auction } = await loadFixture(setupFee);
+
+    const startBlock = 0;
     const k = fees.length;
     const n = fees.length;
     const congestionFee = 7;

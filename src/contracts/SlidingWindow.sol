@@ -23,6 +23,10 @@ contract SlidingWindow is BlockchainMock{
             if(recordCongestion[i]) {
                 totalCongested = totalCongested + 1;
             }
+
+            if(totalCongested>=k) {
+                return true;
+            }
         }
 
         // Activate the sliding window 
